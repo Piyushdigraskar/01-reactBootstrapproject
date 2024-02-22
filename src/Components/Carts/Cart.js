@@ -1,58 +1,35 @@
-import React from "react";
+import React,{useContext} from "react";
 
 import CartItem from "./CartItem";
+import CartContext from "../../Store/CartContext";
 import { Container, Button, ListGroup } from "react-bootstrap";
-const Dummy_array = [
-    {
 
-        title: 'Colors',
-
-        price: 100,
-
-        imageUrl: 'https://prasadyash2411.github.io/ecom-website/img/Album%201.png',
-
-    },
-
-    {
-
-        title: 'Black and white Colors',
-
-        price: 50,
-
-        imageUrl: 'https://prasadyash2411.github.io/ecom-website/img/Album%202.png',
-
-    },
-
-    {
-
-        title: 'Yellow and Black Colors',
-
-        price: 70,
-
-        imageUrl: 'https://prasadyash2411.github.io/ecom-website/img/Album%203.png',
-
-    },
-
-    {
-
-        title: 'Blue Color',
-
-        price: 100,
-
-        imageUrl: 'https://prasadyash2411.github.io/ecom-website/img/Album%204.png',
-
-    }
-]
 
 const Cart = (props) => {
+    const cartCtx = useContext(CartContext);
+
+    const cartItemAddHandler = (item)=>{
+        cartCtx.addItem(item);
+    }
+
+    const cartItemremoveHandler = (id)=>{
+        cartCtx.removeItem(id);
+    }
+
+
     const cartItems = (
         <ul>
-            {Dummy_array.map((item) => {
+            {cartCtx.items.map((item) => {
+                console.log(item.amount)
                 return (
                     <CartItem
-                        key={item.title} // Add a unique key for each item
+                        key={item.title}
+                        id={item.id} // Add a unique key for each item
                         title={item.title}
                         price={item.price}
+                        amount={item.amount}
+                        onAdd={() => cartItemAddHandler(item)}
+                        onRemove={()=>cartItemremoveHandler(item.id)}
                     />
                 );
             })}

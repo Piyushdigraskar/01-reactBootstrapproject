@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Navbar, Button, Container, Row, Col } from "react-bootstrap";
 import Items from "./Components/Items/Items";
 import Cart from "./Components/Carts/Cart";
+import CartProvider from "./Store/CartProvider";
 
 function App() {
   const [cartIsShown, setCartIsShown] = useState(false);
@@ -15,7 +16,7 @@ function App() {
   }
 
   return (
-  <div>
+  <CartProvider>
       <Navbar bg='dark' variant='dark' expand='lg' className="mb-4">
         <Container className="text-justify-center">
           <Navbar.Brand className="mx-auto" href='/'>Home</Navbar.Brand>
@@ -36,7 +37,7 @@ function App() {
           )}
         </Row>
       </Container>
-    </div>
+    </CartProvider>
   );
 }
 

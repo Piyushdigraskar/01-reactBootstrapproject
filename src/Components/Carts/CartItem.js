@@ -3,14 +3,17 @@ import { Container, Button } from "react-bootstrap";
 
 const CartItem = (props) => {
     return (
-        <Container className="justify-content-center">
-            <li className="list-group-item d-flex justify-content-between align-items-center">
-                <h2>{props.title} - </h2>
-                <h2>{props.price}</h2>
-                <span className="badge badge-primary badge-pill">{props.price}</span>
-                <Button variant="danger">Remove</Button>
+        <li className="list-group-item d-flex justify-content-between align-items-center">
+             <Container className="justify-content-center">
+                <h4>{props.title} - </h4>
+                <h4>{props.price}</h4>
+                <span className="badge bg-primary">{props.amount}</span>
+            </Container>
+                
+                <Button variant="success" onClick={props.onAdd}>Add</Button>
+                <Button variant="danger" onClick={props.onRemove}>Remove</Button>
             </li>
-        </Container>
+       
     )
 }
 

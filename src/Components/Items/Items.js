@@ -1,8 +1,10 @@
 import React from "react";
-import { Button, Card, Row,Container,Col } from "react-bootstrap";
+import { Card, Row, Container, Col } from "react-bootstrap";
+import ItemForm from "./ItemForm";
 
 const Dummy_array = [
     {
+        id: 1,
 
         title: 'Colors',
 
@@ -13,6 +15,7 @@ const Dummy_array = [
     },
 
     {
+        id: 2,
 
         title: 'Black and white Colors',
 
@@ -23,6 +26,7 @@ const Dummy_array = [
     },
 
     {
+        id: 3,
 
         title: 'Yellow and Black Colors',
 
@@ -33,6 +37,7 @@ const Dummy_array = [
     },
 
     {
+        id: 4,
 
         title: 'Blue Color',
 
@@ -42,32 +47,36 @@ const Dummy_array = [
 
     }
 ]
-const Items = () => {
+const Items = (props) => {
     const itemList = Dummy_array.map((item, index) => (
-      <Col key={index} className="mb-2">
-        <Card style={{ width: '18rem' }}>
-          <Card.Header>
-            <Card.Title>{item.title}</Card.Title>
-          </Card.Header>
-          <Card.Body>
-            <Card.Img variant="top" src={item.imageUrl} />
-            <Card.Text>
-              Price: ${item.price}
-            </Card.Text>
-          </Card.Body>
-          <Card.Footer>
-            <Button variant="primary">Add to Cart</Button>
-          </Card.Footer>
-        </Card>
-      </Col>
+        <Col key={index} id={item.id} className="mb-2">
+            <Card style={{ width: '18rem' }}>
+                <Card.Header>
+                    <Card.Title>{item.title}</Card.Title>
+                </Card.Header>
+                <Card.Body>
+                    <Card.Img variant="top" src={item.imageUrl} />
+                    <Card.Text>
+                        Price: ${item.price}
+                    </Card.Text>
+                </Card.Body>
+                <Card.Footer>
+                    <ItemForm
+                        id={item.title}
+                        title={item.title}
+                        price={item.price}
+                    />
+                </Card.Footer>
+            </Card>
+        </Col>
     ));
-    return(
+    return (
         <Container className="text-center">
-        <h1>The generics</h1>
-        <Row>
-          {itemList}
-        </Row>
-      </Container>
+            <h1>The generics</h1>
+            <Row>
+                {itemList}
+            </Row>
+        </Container>
     );
 }
 
