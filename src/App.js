@@ -3,6 +3,20 @@ import { Navbar, Button, Container, Row, Col } from "react-bootstrap";
 import Items from "./Components/Items/Items";
 import Cart from "./Components/Carts/Cart";
 import CartProvider from "./Store/CartProvider";
+import About from "./Components/Pages/About";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import RootLayout from "./Components/Pages/Root";
+
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <RootLayout />,
+    children: [
+      { path: '/about', element: <About /> },
+    ],
+  }
+]);
+
 
 function App() {
   const [cartIsShown, setCartIsShown] = useState(false);
@@ -18,11 +32,7 @@ function App() {
   return (
   <CartProvider>
       <Navbar bg='dark' variant='dark' expand='lg' className="mb-4">
-        <Container className="text-justify-center">
-          <Navbar.Brand className="mx-auto" href='/'>Home</Navbar.Brand>
-          <Navbar.Brand className="mx-auto">Store</Navbar.Brand>
-          <Navbar.Brand className="mx-auto">About</Navbar.Brand>
-        </Container>
+        <RouterProvider router={router}></RouterProvider>
         <Button onClick={showCartHandler} variant='outline-info' className="ml-auto">Cart</Button>
       </Navbar>
       <Container>
