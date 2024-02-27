@@ -2,6 +2,7 @@ import React from "react";
 import { Container } from 'react-bootstrap';
 
 const About = () => {
+    console.log('inside about');
     return (
         <Container className="p-3 bg-light">
             <p>

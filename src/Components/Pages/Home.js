@@ -1,5 +1,5 @@
 import React from "react";
-import { Button } from "react-bootstrap";
+import { Button, Container } from "react-bootstrap";
 
 const Dummy = [
     {
@@ -25,7 +25,6 @@ const Dummy = [
         date: 'JUL 29',
         location: 'PHOENIX, AZ',
         venue: 'AK-CHIN PAVILION',
-        tickets: 'BUY TICKETS'
     },
     {
         id: 5,
@@ -51,15 +50,18 @@ const Home = () => {
             </div>
             <div className="d-flex w-100 justify-content-between align-items-center">
                 <div>{item.venue}</div>
-                {item.tickets && <Button variant="primary">{item.tickets}</Button>}
+                <Button variant="primary">Buy Tickets</Button>
             </div>
         </li>
     ));
 
     return (
+        <Container className="justify-content-center">
+        <h1>Venue</h1>
         <ul className="list-group">
             {venueList}
         </ul>
+        </Container>
     );
 
 }
