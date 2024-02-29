@@ -3,6 +3,7 @@ import About from "./Components/Pages/About";
 import Home from "./Components/Pages/Home";
 import Store from "./Components/Pages/Store";
 import Header from "./Components/Layout/Header";
+import Product from "./Components/Pages/Product";
 import Contact from "./Components/Pages/Contact";
 import { Route, Switch } from "react-router-dom";
 
@@ -35,7 +36,9 @@ function App() {
           <Route path='/home'>
             <Home />
           </Route>
-
+          <Route path='/product/:productId'>
+            <Product />
+          </Route>
           <Route path='/contact'>
             <Contact onAdd={addHandler} />
           </Route>

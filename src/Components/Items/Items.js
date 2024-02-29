@@ -1,6 +1,9 @@
 import React from "react";
 import { Card, Row, Container, Col } from "react-bootstrap";
+import { Link } from "react-router-dom";
+//import { useParams } from "react-router-dom";
 import ItemForm from "./ItemForm";
+
 
 const Dummy_array = [
     {
@@ -48,8 +51,11 @@ const Dummy_array = [
     }
 ]
 const Items = (props) => {
+    //const params = useParams();
+      
     const itemList = Dummy_array.map((item, index) => (
         <Col key={index} id={item.id} className="mb-2">
+            <Link to={`/product/${item.id}`}>
             <Card style={{ width: '18rem' }}>
                 <Card.Header>
                     <Card.Title>{item.title}</Card.Title>
@@ -68,6 +74,7 @@ const Items = (props) => {
                     />
                 </Card.Footer>
             </Card>
+            </Link>
         </Col>
     ));
     return (
