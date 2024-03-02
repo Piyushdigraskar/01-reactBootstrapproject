@@ -16,7 +16,6 @@ const Store = () => {
     return (
         <CartProvider>
             <Navbar bg='dark' variant='dark' expand='lg' className="mb-4">
-                
                 <Button onClick={showCartHandler} variant='outline-info' className="ml-auto">Cart</Button>
             </Navbar>
             <Container>

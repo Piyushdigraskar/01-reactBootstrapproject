@@ -1,14 +1,19 @@
-import React from "react";
+import React, { Fragment, useContext } from "react";
 import About from "./Components/Pages/About";
 import Home from "./Components/Pages/Home";
 import Store from "./Components/Pages/Store";
 import Header from "./Components/Layout/Header";
 import Product from "./Components/Pages/Product";
 import Contact from "./Components/Pages/Contact";
-import { Route, Switch } from "react-router-dom";
+import StartingPageContent from "./Components/Pages/StartingPage";
+import { Route, Switch, Redirect } from "react-router-dom";
+import AuthForm from "./Components/Pages/AuthForm";
+import AuthContext from "./Store/AuthContext";
 
 
 function App() {
+  const authCtx = useContext(AuthContext);
+
   console.log('inside app');
   async function addHandler(info) {
     const response = await fetch('https://react-apiproject-default-rtdb.asia-southeast1.firebasedatabase.app/contacts.json', {
@@ -23,31 +28,35 @@ function App() {
   }
 
   return (
-    <div>
-      <header>
-        <Header />
-      </header>
-      <main>
-        <Switch>
-          <Route path='/about'>
-            <About />
-          </Route>
+    <Fragment>
+      <Header>
+      </Header>
+      <Switch>
+        <Route path='/' exact>
+          <StartingPageContent></StartingPageContent>
+        </Route>
+        <Route path='/store' >
+          <Store />
+        </Route>
+        <Route path='/about'>
+          <About />
+        </Route>
+        <Route path='/auth'>
+          {!authCtx.isLoggedin && <AuthForm />}
+          {authCtx.isLoggedin && <Redirect to='/store'></Redirect>}
+        </Route>
+        <Route path='/home'>
+          <Home />
+        </Route>
+        <Route path='/product/:productId'>
+          <Product />
+        </Route>
+        <Route path='/contact'>
+          <Contact onAdd={addHandler} />
+        </Route>
 
-          <Route path='/home'>
-            <Home />
-          </Route>
-          <Route path='/product/:productId'>
-            <Product />
-          </Route>
-          <Route path='/contact'>
-            <Contact onAdd={addHandler} />
-          </Route>
-          <Route path='/'>
-            <Store />
-          </Route>
-        </Switch>
-      </main>
-    </div>
+      </Switch>
+    </Fragment>
   );
 }
 
