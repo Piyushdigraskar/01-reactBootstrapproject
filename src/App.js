@@ -36,7 +36,8 @@ function App() {
           <StartingPageContent></StartingPageContent>
         </Route>
         <Route path='/store' >
-          <Store />
+        {authCtx.isLoggedin && <Store />}
+        {!authCtx.isLoggedin && <Redirect to='/auth'></Redirect>}
         </Route>
         <Route path='/about'>
           <About />
@@ -49,7 +50,8 @@ function App() {
           <Home />
         </Route>
         <Route path='/product/:productId'>
-          <Product />
+        {authCtx.isLoggedin && <Product />}
+        {!authCtx.isLoggedin && <Redirect to='/auth'></Redirect>}
         </Route>
         <Route path='/contact'>
           <Contact onAdd={addHandler} />
