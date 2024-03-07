@@ -15,13 +15,14 @@ const ItemForm = (props)=>{
         if (enteredAmount <= 0 || enteredAmount > 5) {
             return;
         }
-
+        
         cartCtx.addItem({
             id:props.id,
             title:props.title,
             price:props.price,
             amount:enteredAmount
         })
+        console.log(cartCtx.items);
 
 
     }

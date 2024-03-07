@@ -8,6 +8,7 @@ import { Container, Button, ListGroup } from "react-bootstrap";
 const Cart = (props) => {
     const cartCtx = useContext(CartContext);
 
+    console.log(cartCtx);
     const cartItemAddHandler = (item)=>{
         cartCtx.addItem(item);
     }
@@ -23,8 +24,8 @@ const Cart = (props) => {
                 console.log(item.amount)
                 return (
                     <CartItem
-                        key={item.title}
-                        id={item.id} // Add a unique key for each item
+                        key={item.id}
+                        id={item.id} // Adding a unique key for each item
                         title={item.title}
                         price={item.price}
                         amount={item.amount}

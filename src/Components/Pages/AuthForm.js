@@ -8,6 +8,8 @@ const AuthForm = () => {
 
     const authCtx = useContext(AuthContext);
 
+    
+
     const submitHandler = (event)=>{
         console.log('Inside auth');
         event.preventDefault();
@@ -33,7 +35,8 @@ const AuthForm = () => {
       ).then(res =>{
         if(res.ok){
           return res.json().then(data =>{
-            authCtx.login(data.idToken);
+            authCtx.login(data.idToken, data.email);
+            
           })
         }else{
           return res.json().then((data) => {

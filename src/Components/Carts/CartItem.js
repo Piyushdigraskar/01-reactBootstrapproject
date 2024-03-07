@@ -2,6 +2,7 @@ import React from "react";
 import { Container, Button } from "react-bootstrap";
 
 const CartItem = (props) => {
+    console.log(props.amount);
     return (
         <li className="list-group-item d-flex justify-content-between align-items-center">
              <Container className="justify-content-center">

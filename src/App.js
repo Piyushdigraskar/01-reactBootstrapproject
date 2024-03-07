@@ -14,7 +14,7 @@ import AuthContext from "./Store/AuthContext";
 function App() {
   const authCtx = useContext(AuthContext);
 
-  console.log('inside app');
+  console.log('inside app',authCtx);
   async function addHandler(info) {
     const response = await fetch('https://react-apiproject-default-rtdb.asia-southeast1.firebasedatabase.app/contacts.json', {
       method: 'POST',
