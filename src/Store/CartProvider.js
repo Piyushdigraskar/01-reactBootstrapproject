@@ -16,7 +16,7 @@ const CartProvider = (props) => {
 
     const fetchCartItems = async (email) => {
         try {
-            const response = await axios.get(`https://crudcrud.com/api/4ad6b6cac4674996868eb9bed4f99ae3/${email}`);
+            const response = await axios.get(`https://crudcrud.com/api/8cf43c727db042a2ae1e2e3016d8867d/${email}`);
 
             if (response.status !== 200) {
                 throw new Error('Failed to fetch cart items!');
@@ -75,7 +75,7 @@ const CartProvider = (props) => {
     const removeItemFromServer = async (id) =>{
         console.log(id);
         try {
-            const response = await axios.delete(`https://crudcrud.com/api/4ad6b6cac4674996868eb9bed4f99ae3/${authCtx.userEmail}/${id}`);
+            const response = await axios.delete(`https://crudcrud.com/api/8cf43c727db042a2ae1e2e3016d8867d/${authCtx.userEmail}/${id}`);
 
             if (response.status !== 204) {
                 throw new Error('Failed to update cart on server');

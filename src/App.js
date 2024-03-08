@@ -1,14 +1,16 @@
-import React, { Fragment, useContext } from "react";
+import React, { Fragment, Suspense, useContext ,lazy} from "react";
 import About from "./Components/Pages/About";
 import Home from "./Components/Pages/Home";
 import Store from "./Components/Pages/Store";
 import Header from "./Components/Layout/Header";
 import Product from "./Components/Pages/Product";
-import Contact from "./Components/Pages/Contact";
+//import Contact from "./Components/Pages/Contact";
 import StartingPageContent from "./Components/Pages/StartingPage";
 import { Route, Switch, Redirect } from "react-router-dom";
 import AuthForm from "./Components/Pages/AuthForm";
 import AuthContext from "./Store/AuthContext";
+
+const Contact = lazy(()=>import('./Components/Pages/Contact'));
 
 
 function App() {
@@ -54,7 +56,9 @@ function App() {
         {!authCtx.isLoggedin && <Redirect to='/auth'></Redirect>}
         </Route>
         <Route path='/contact'>
+          <Suspense fallback={<p>Loading...</p>}>
           <Contact onAdd={addHandler} />
+          </Suspense>
         </Route>
 
       </Switch>
